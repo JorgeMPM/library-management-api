@@ -25,7 +25,7 @@ public record AuthorRequestDTO(
     String firstName, 
     
     @NotBlank (message = "Los apellidos del autor son obligatorios")
-    @Size(max = 100, message = "Los apellidos del autor no pueden superar")
+    @Size(max = 100, message = "Los apellidos del autor no pueden superar los 100 caracteres")
     String lastName, 
     
     @Size(max = 100, message = "La nacionalidad no puede superar los 100 caracteres")

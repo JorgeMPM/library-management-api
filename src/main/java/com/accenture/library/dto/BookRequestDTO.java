@@ -63,5 +63,7 @@ public record BookRequestDTO(
         Long categoryId,
         
         @Schema (description = "La lista de IDs de los autores del libro", example = "[1, 2]")
-        List<Long> authorIds) {
+        List<@NotNull(message = "Los ids de autor no pueden ser nulos") 
+             @Min(value = 1, message = "Los ids de autor no pueden ser menores que 1") 
+             Long> authorIds) {
 }
