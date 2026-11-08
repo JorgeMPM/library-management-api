@@ -132,7 +132,7 @@ public class AuthorController {
     @DeleteMapping("/{id}")
     @Operation(summary = "Eliminar un autor", description = "Elimina un autor existente.")
     @ApiResponses({
-        @ApiResponse(responseCode = "200", description = "Autor eliminado correctamente"),
+        @ApiResponse(responseCode = "204", description = "Autor eliminado correctamente"),
         @ApiResponse(responseCode = "404", description = "Autor no encontrado", content = @Content(schema = @Schema(implementation = ErrorResponseDTO.class))),
         @ApiResponse(responseCode = "409", description = "Conflicto al eliminar el autor", content = @Content(schema = @Schema(implementation = ErrorResponseDTO.class))),
         @ApiResponse(responseCode = "401", description = "No autorizado", content = @Content(schema = @Schema(implementation = ErrorResponseDTO.class))),
@@ -140,7 +140,7 @@ public class AuthorController {
     })
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         authorService.delete(id);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
     
 }
