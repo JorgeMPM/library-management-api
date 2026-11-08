@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.accenture.library.dto.AuthorRequestDTO;
 import com.accenture.library.dto.AuthorResponseDTO;
+import com.accenture.library.exception.DuplicateResourceException;
 import com.accenture.library.exception.ResourceInUseException;
 import com.accenture.library.exception.ResourceNotFoundException;
 import com.accenture.library.mapper.AuthorMapper;
@@ -80,6 +81,10 @@ public class AuthorServiceImpl implements AuthorService {
     @Override
     @Transactional
     public AuthorResponseDTO create(AuthorRequestDTO dto) {
+        if (authorRepository.existsByFirstNameIgnoreCaseAndLastNameIgnoreCase(dto.firstName(), dto.lastName())) {
+        throw new DuplicateResourceException(
+                "Ya existe un autor con el nombre '" + dto.firstName() + " " + dto.lastName() + "'");
+    }
         Author author = authorMapper.toEntity(dto);
         return authorMapper.toResponseDTO(authorRepository.save(author));
     }
@@ -91,6 +96,12 @@ public class AuthorServiceImpl implements AuthorService {
     @Transactional
     public AuthorResponseDTO update(Long id, AuthorRequestDTO dto) {
         Author author = findAuthorOrThrow(id);
+
+        if (authorRepository.existsByFirstNameIgnoreCaseAndLastNameIgnoreCaseAndIdNot(dto.firstName(), dto.lastName(), id)) {
+        throw new DuplicateResourceException(
+                "Ya existe un autor con el nombre '" + dto.firstName() + " " + dto.lastName() + "'");
+    }
+    
         authorMapper.updateEntity(author, dto);
         return authorMapper.toResponseDTO(authorRepository.save(author));
     }

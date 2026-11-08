@@ -22,4 +22,26 @@ public interface AuthorRepository extends JpaRepository<Author, Long> {
      * @return Lista de autores ordenados por ID ascendente.
      */
     List<Author> findAllByOrderByIdAsc();
+
+    /**
+     * Comprueba si ya existe un autor con ese nombre y apellidos, sin distinguir
+     * mayúsculas.
+     *
+     * @param firstName nombre del autor
+     * @param lastName  apellidos del autor
+     * @return true si ya existe
+     */
+    boolean existsByFirstNameIgnoreCaseAndLastNameIgnoreCase(String firstName, String lastName);
+
+    /**
+     * Comprueba si otro autor distinto del indicado ya tiene ese nombre y
+     * apellidos.
+     *
+     * @param firstName nombre del autor
+     * @param lastName  apellidos del autor
+     * @param id id del autor que se está editando
+     * @return true si otro autor ya los usa
+     */
+    boolean existsByFirstNameIgnoreCaseAndLastNameIgnoreCaseAndIdNot(String firstName, String lastName, Long id);
+
 }
