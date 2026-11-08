@@ -6,8 +6,8 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.accenture.library.dto.AuthorRequestDTO;
-import com.accenture.library.dto.AuthorResponseDTO;
+import com.accenture.library.dto.request.AuthorRequestDTO;
+import com.accenture.library.dto.response.AuthorResponseDTO;
 import com.accenture.library.exception.DuplicateResourceException;
 import com.accenture.library.exception.ResourceInUseException;
 import com.accenture.library.exception.ResourceNotFoundException;

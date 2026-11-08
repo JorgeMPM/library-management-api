@@ -1,4 +1,4 @@
-package com.accenture.library.dto;
+package com.accenture.library.dto.response;
 
 /**
  * Respuesta del login con el token JWT.

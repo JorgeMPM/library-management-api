@@ -1,8 +1,8 @@
 package com.accenture.library.service;
 
-import com.accenture.library.dto.BookRequestDTO;
-import com.accenture.library.dto.BookResponseDTO;
-import com.accenture.library.dto.PageResponseDTO;
+import com.accenture.library.dto.request.BookRequestDTO;
+import com.accenture.library.dto.response.BookResponseDTO;
+import com.accenture.library.dto.response.PageResponseDTO;
 
 /*
  * Crea la interfaz BookService con los métodos:

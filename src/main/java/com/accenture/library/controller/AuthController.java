@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.accenture.library.dto.ErrorResponseDTO;
-import com.accenture.library.dto.LoginRequestDTO;
-import com.accenture.library.dto.LoginResponseDTO;
+import com.accenture.library.dto.request.LoginRequestDTO;
+import com.accenture.library.dto.response.ErrorResponseDTO;
+import com.accenture.library.dto.response.LoginResponseDTO;
 import com.accenture.library.security.JwtService;
 
 import io.swagger.v3.oas.annotations.Operation;

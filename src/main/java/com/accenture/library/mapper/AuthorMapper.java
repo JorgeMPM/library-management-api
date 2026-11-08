@@ -2,8 +2,8 @@ package com.accenture.library.mapper;
 
 import org.springframework.stereotype.Component;
 
-import com.accenture.library.dto.AuthorRequestDTO;
-import com.accenture.library.dto.AuthorResponseDTO;
+import com.accenture.library.dto.request.AuthorRequestDTO;
+import com.accenture.library.dto.response.AuthorResponseDTO;
 import com.accenture.library.model.Author;
 
 /*

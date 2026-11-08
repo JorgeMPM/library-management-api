@@ -1,4 +1,4 @@
-package com.accenture.library.dto;
+package com.accenture.library.dto.response;
 
 import java.time.LocalDate;
 

@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import com.accenture.library.dto.LoanResponseDTO;
+import com.accenture.library.dto.response.LoanResponseDTO;
 import com.accenture.library.model.Book;
 import com.accenture.library.model.Loan;
 import com.accenture.library.model.LoanStatus;

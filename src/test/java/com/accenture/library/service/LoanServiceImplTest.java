@@ -15,7 +15,7 @@ import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.accenture.library.dto.LoanRequestDTO;
+import com.accenture.library.dto.request.LoanRequestDTO;
 import com.accenture.library.exception.BookOutOfStockException;
 import com.accenture.library.exception.LoanAlreadyReturnedException;
 import com.accenture.library.mapper.LoanMapper;

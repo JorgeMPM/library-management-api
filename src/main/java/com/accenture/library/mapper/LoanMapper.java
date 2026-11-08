@@ -4,8 +4,8 @@ import java.time.LocalDate;
 
 import org.springframework.stereotype.Component;
 
-import com.accenture.library.dto.LoanRequestDTO;
-import com.accenture.library.dto.LoanResponseDTO;
+import com.accenture.library.dto.request.LoanRequestDTO;
+import com.accenture.library.dto.response.LoanResponseDTO;
 import com.accenture.library.model.Book;
 import com.accenture.library.model.Loan;
 import com.accenture.library.model.LoanStatus;

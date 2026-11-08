@@ -1,6 +1,6 @@
 package com.accenture.library.validation;
 
-import com.accenture.library.dto.BookRequestDTO;
+import com.accenture.library.dto.request.BookRequestDTO;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

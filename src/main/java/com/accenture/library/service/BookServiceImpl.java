@@ -12,9 +12,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.accenture.library.dto.BookRequestDTO;
-import com.accenture.library.dto.BookResponseDTO;
-import com.accenture.library.dto.PageResponseDTO;
+import com.accenture.library.dto.request.BookRequestDTO;
+import com.accenture.library.dto.response.BookResponseDTO;
+import com.accenture.library.dto.response.PageResponseDTO;
 import com.accenture.library.exception.DuplicateResourceException;
 import com.accenture.library.exception.InvalidQueryParameterException;
 import com.accenture.library.exception.ReferencedResourceNotFoundException;

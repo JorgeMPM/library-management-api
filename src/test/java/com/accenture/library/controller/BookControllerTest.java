@@ -19,7 +19,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.accenture.library.dto.BookResponseDTO;
+import com.accenture.library.dto.response.BookResponseDTO;
 import com.accenture.library.exception.ResourceNotFoundException;
 import com.accenture.library.security.JwtAuthenticationFilter;
 import com.accenture.library.security.JwtService;

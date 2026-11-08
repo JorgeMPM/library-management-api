@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.accenture.library.dto.AuthorRequestDTO;
-import com.accenture.library.dto.AuthorResponseDTO;
-import com.accenture.library.dto.ErrorResponseDTO;
+import com.accenture.library.dto.request.AuthorRequestDTO;
+import com.accenture.library.dto.response.AuthorResponseDTO;
+import com.accenture.library.dto.response.ErrorResponseDTO;
 import com.accenture.library.service.AuthorService;
 
 import io.swagger.v3.oas.annotations.Operation;

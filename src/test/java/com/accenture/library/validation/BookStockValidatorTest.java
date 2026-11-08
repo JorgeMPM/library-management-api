@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Test;
 
-import com.accenture.library.dto.BookRequestDTO;
+import com.accenture.library.dto.request.BookRequestDTO;
 
 /**
  * Test unitario del validador de clase de BookRequestDTO.

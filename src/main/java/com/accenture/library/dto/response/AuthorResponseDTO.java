@@ -1,4 +1,4 @@
-package com.accenture.library.dto;
+package com.accenture.library.dto.response;
 
 /*
  * Crea el record AuthorResponseDTO con los componentes id Long, firstName String, lastName String y nationality String.

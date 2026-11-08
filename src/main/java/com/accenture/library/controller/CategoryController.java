@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.accenture.library.dto.CategoryRequestDTO;
-import com.accenture.library.dto.CategoryResponseDTO;
-import com.accenture.library.dto.ErrorResponseDTO;
+import com.accenture.library.dto.request.CategoryRequestDTO;
+import com.accenture.library.dto.response.CategoryResponseDTO;
+import com.accenture.library.dto.response.ErrorResponseDTO;
 import com.accenture.library.service.CategoryService;
 
 import io.swagger.v3.oas.annotations.Operation;

@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
-import com.accenture.library.dto.ErrorResponseDTO;
+import com.accenture.library.dto.response.ErrorResponseDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
 

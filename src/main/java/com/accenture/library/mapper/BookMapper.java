@@ -5,9 +5,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.accenture.library.dto.AuthorResponseDTO;
-import com.accenture.library.dto.BookRequestDTO;
-import com.accenture.library.dto.BookResponseDTO;
+import com.accenture.library.dto.request.BookRequestDTO;
+import com.accenture.library.dto.response.AuthorResponseDTO;
+import com.accenture.library.dto.response.BookResponseDTO;
 import com.accenture.library.model.Author;
 import com.accenture.library.model.Book;
 

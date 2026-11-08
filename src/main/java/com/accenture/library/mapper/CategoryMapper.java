@@ -2,8 +2,8 @@ package com.accenture.library.mapper;
 
 import org.springframework.stereotype.Component;
 
-import com.accenture.library.dto.CategoryRequestDTO;
-import com.accenture.library.dto.CategoryResponseDTO;
+import com.accenture.library.dto.request.CategoryRequestDTO;
+import com.accenture.library.dto.response.CategoryResponseDTO;
 import com.accenture.library.model.Category;
 
 /*

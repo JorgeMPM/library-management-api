@@ -1,4 +1,4 @@
-package com.accenture.library.dto;
+package com.accenture.library.dto.request;
 
 /*
  * Crea el record CategoryRequestDTO con dos componentes:

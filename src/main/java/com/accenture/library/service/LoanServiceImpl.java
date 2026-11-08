@@ -8,8 +8,8 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.accenture.library.dto.LoanRequestDTO;
-import com.accenture.library.dto.LoanResponseDTO;
+import com.accenture.library.dto.request.LoanRequestDTO;
+import com.accenture.library.dto.response.LoanResponseDTO;
 import com.accenture.library.exception.BookOutOfStockException;
 import com.accenture.library.exception.LoanAlreadyReturnedException;
 import com.accenture.library.exception.ReferencedResourceNotFoundException;

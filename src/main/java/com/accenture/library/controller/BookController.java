@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.accenture.library.dto.BookRequestDTO;
-import com.accenture.library.dto.BookResponseDTO;
-import com.accenture.library.dto.ErrorResponseDTO;
-import com.accenture.library.dto.PageResponseDTO;
+import com.accenture.library.dto.request.BookRequestDTO;
+import com.accenture.library.dto.response.BookResponseDTO;
+import com.accenture.library.dto.response.ErrorResponseDTO;
+import com.accenture.library.dto.response.PageResponseDTO;
 import com.accenture.library.service.BookService;
 
 import io.swagger.v3.oas.annotations.Operation;

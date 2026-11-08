@@ -2,8 +2,8 @@ package com.accenture.library.service;
 
 import java.util.List;
 
-import com.accenture.library.dto.LoanRequestDTO;
-import com.accenture.library.dto.LoanResponseDTO;
+import com.accenture.library.dto.request.LoanRequestDTO;
+import com.accenture.library.dto.response.LoanResponseDTO;
 
 /*
  * Crea la interfaz LoanService con los métodos: List<LoanResponseDTO> findAll(); LoanResponseDTO findById(Long id)

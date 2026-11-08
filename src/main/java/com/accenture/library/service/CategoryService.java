@@ -2,8 +2,8 @@ package com.accenture.library.service;
 
 import java.util.List;
 
-import com.accenture.library.dto.CategoryRequestDTO;
-import com.accenture.library.dto.CategoryResponseDTO;
+import com.accenture.library.dto.request.CategoryRequestDTO;
+import com.accenture.library.dto.response.CategoryResponseDTO;
 
 /*
  * Crea la interfaz CategoryService con los métodos:

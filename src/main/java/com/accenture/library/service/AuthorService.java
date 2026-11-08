@@ -2,8 +2,8 @@ package com.accenture.library.service;
 
 import java.util.List;
 
-import com.accenture.library.dto.AuthorRequestDTO;
-import com.accenture.library.dto.AuthorResponseDTO;
+import com.accenture.library.dto.request.AuthorRequestDTO;
+import com.accenture.library.dto.response.AuthorResponseDTO;
 
 /*
  * Crea la interfaz AuthorService con los métodos: List<AuthorResponseDTO> findAll(); AuthorResponseDTO findById(Long id)

@@ -1,4 +1,4 @@
-package com.accenture.library.dto;
+package com.accenture.library.dto.response;
 
 /*
  * Crea el record CategoryResponseDTO con los componentes id Long, name String y description String.

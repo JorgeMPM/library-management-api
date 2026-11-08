@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.accenture.library.dto.ErrorResponseDTO;
-import com.accenture.library.dto.LoanRequestDTO;
-import com.accenture.library.dto.LoanResponseDTO;
+import com.accenture.library.dto.request.LoanRequestDTO;
+import com.accenture.library.dto.response.ErrorResponseDTO;
+import com.accenture.library.dto.response.LoanResponseDTO;
 import com.accenture.library.service.LoanService;
 
 import io.swagger.v3.oas.annotations.Operation;
