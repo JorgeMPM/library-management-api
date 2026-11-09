@@ -1,8 +1,38 @@
-# Library – API REST de Gestión de Biblioteca
+# Library Management API
 
-API REST desarrollada con Spring Boot para gestionar los **libros, autores, categorías y préstamos** de una biblioteca. Incluye paginación, ordenación y filtros en el listado de libros, validaciones con Bean Validation, manejo global de errores, documentación OpenAPI (Swagger UI) y seguridad con Spring Security y JWT.
+![Java](https://img.shields.io/badge/Java-21-orange)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.1.1-brightgreen)
+![MySQL](https://img.shields.io/badge/MySQL-8-blue)
+![JWT](https://img.shields.io/badge/Seguridad-JWT-black)
+![Docker](https://img.shields.io/badge/Docker-multi--stage-2496ED)
 
-Proyecto final de la 1ª Edición Back-End Java con GenAI.
+API REST para gestionar los **libros, autores, categorías y préstamos** de una biblioteca, desarrollada con **Spring Boot**. Al prestar un libro se descuenta su stock y al devolverlo se repone, siempre de forma atómica.
+
+Proyecto final del bootcamp **Back-End Java con GenAI** (Accenture · Universidad San Pablo CEU).
+
+### Qué incluye
+
+- Arquitectura **por capas** (Controller → Service → Repository) con DTOs (`record`) y mappers.
+- **Spring Data JPA + MySQL**: relaciones `@ManyToOne` y `@ManyToMany`, consultas derivadas y JPQL con filtros opcionales.
+- **Paginación, ordenación y filtros** en el listado de libros.
+- **Bean Validation**, con dos validaciones personalizadas de clase.
+- **Manejo global de errores** con una estructura de respuesta única para todos los códigos (400, 401, 403, 404, 405, 409, 500).
+- **Seguridad stateless con JWT** y dos roles (ADMIN y USER).
+- Documentación **OpenAPI / Swagger UI**.
+- **Tests** con JUnit 5, Mockito y MockMvc.
+- Imagen **Docker** multi-stage.
+
+### Tecnologías
+
+| Área | Tecnología |
+|---|---|
+| Lenguaje | Java 21 |
+| Framework | Spring Boot 4.1.1 (Web MVC, Data JPA, Validation, Security) |
+| Base de datos | MySQL 8 · H2 en memoria (perfil Docker) |
+| Seguridad | Spring Security + JWT (jjwt, HS256) + BCrypt |
+| Documentación | springdoc-openapi (Swagger UI) |
+| Tests | JUnit 5, Mockito, MockMvc |
+| Otros | Lombok (solo entidades), Maven, Docker |
 
 ---
 
@@ -30,15 +60,30 @@ mysql --default-character-set=utf8mb4 -u root -p < db/init.sql
 
 También se puede abrir `db/init.sql` en MySQL Workbench (o en el cliente de base de datos de VS Code) y ejecutarlo completo.
 
-### 2. Configurar las credenciales de MySQL
+### 2. Configurar las credenciales (variables de entorno)
 
-La conexión se configura **únicamente** en `src/main/resources/application.properties`. Para usar el proyecto en otro equipo basta con cambiar estas tres propiedades:
+Las credenciales **no están en el código**: se leen de variables de entorno. Los valores entre paréntesis son los que se usan si la variable no está definida.
 
-```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/library
-spring.datasource.username=root
-spring.datasource.password=TU_CONTRASEÑA
+| Variable | Para qué | Por defecto |
+|---|---|---|
+| `DB_PASSWORD` | Contraseña de MySQL | *(vacía)* |
+| `DB_USERNAME` | Usuario de MySQL | `root` |
+| `DB_URL` | URL de conexión | `jdbc:mysql://localhost:3306/library` |
+| `JWT_SECRET` | Clave de firma de los tokens (mínimo 32 caracteres) | clave de desarrollo, **no usar en producción** |
+
+Normalmente basta con definir la contraseña de MySQL en la terminal antes de arrancar:
+
+```powershell
+# PowerShell (Windows)
+$env:DB_PASSWORD="tu_contraseña"
 ```
+
+```bash
+# Bash (Linux / macOS / Git Bash)
+export DB_PASSWORD=tu_contraseña
+```
+
+La variable solo dura mientras la terminal está abierta.
 
 ### 3. Arrancar la aplicación
 
@@ -137,19 +182,21 @@ Se han implementado los **tres filtros**, que se combinan entre sí y con la pag
 - La creación y la devolución de un préstamo son **atómicas** gracias a `@Transactional`: si algo falla, se deshacen tanto el préstamo como el cambio de stock.
 
 **Validaciones**
-- Bean Validation en los DTO de entrada, con mensajes en español.
+- Bean Validation en los DTO de entrada, con mensajes en español centralizados en la clase `ValidationMessages`.
 - Dos validaciones de clase personalizadas (`@ValidBookStock` y `@ValidLoanDates`) para las reglas que dependen de dos campos. Si alguno de los campos es nulo, la regla no se evalúa.
 
 **Errores**
 - `GlobalExceptionHandler` (`@RestControllerAdvice`) centraliza todos los errores con la misma estructura (`ErrorResponseDTO`) y fuerza la respuesta a JSON, también en el 406.
+- Los textos de error están en la clase `ErrorMessages`; los que llevan datos (un id, un ISBN…) son plantillas que se completan con `String.formatted()`.
 - Excepciones propias con nombres descriptivos: `ResourceNotFoundException` (404), `ReferencedResourceNotFoundException` (400, id inexistente en el body), `InvalidQueryParameterException` (400, paginación u ordenación no válidas), `DuplicateResourceException`, `ResourceInUseException`, `BookOutOfStockException` y `LoanAlreadyReturnedException` (409).
 - Se respeta el orden de prioridad del enunciado: 401 → 403 → 400 → 404 → 409.
 - Cualquier violación de una restricción de la base de datos (`DataIntegrityViolationException`) devuelve 409.
+- No se permiten duplicados: un **ISBN** repetido, una **categoría** con el mismo nombre o un **autor** con el mismo nombre y apellidos (sin distinguir mayúsculas) devuelven 409. La nacionalidad no forma parte del criterio porque es opcional: si contara, bastaría con omitirla para crear un duplicado.
 
 **Paginación y ordenación.** Se validan manualmente en el Service. El parámetro `sort` se lee tal como llega en la petición (`getParameterValues`) para poder detectar si viene repetido. Siempre se desempata por `id` ascendente. El filtro por autor usa una subconsulta `EXISTS` para que cada libro aparezca una sola vez y la paginación sea correcta.
 
 **Seguridad**
-- Autenticación **stateless** con JWT firmado con **HS256**. El token incluye `sub`, `role`, `iat` y `exp` y caduca a las 24 horas. La clave secreta se lee de `application.properties`.
+- Autenticación **stateless** con JWT firmado con **HS256**. El token incluye `sub`, `role`, `iat` y `exp` y caduca a las 24 horas. La clave secreta se lee de la variable de entorno `JWT_SECRET`.
 - El rol que se guarda en el token es la autoridad que empieza por `ROLE_`, no `FACTOR_PASSWORD`.
 - Los `DELETE` usan el patrón `/api/v1/books/*` (un solo nivel): así `DELETE /api/v1/books` sin id y `DELETE /api/v1/loans/{id}` devuelven 405 para cualquier rol.
 - Los errores 401 y 403 se producen en los filtros de seguridad; el *entry point* y el *access denied handler* los reenvían al `HandlerExceptionResolver` para que el `GlobalExceptionHandler` los devuelva con la estructura de error estándar.
@@ -181,8 +228,8 @@ docker run -p 8080:8080 library:1.0
 ```
 
 Para comprobarlo en Swagger UI (`http://localhost:8080/swagger-ui.html`): hacer login con `POST /auth/login`, autorizar con el token, crear una categoría con `POST /api/v1/categories` y listarla con `GET /api/v1/categories`.
----
 
+---
 
 ## Tests
 
@@ -195,3 +242,23 @@ Para comprobarlo en Swagger UI (`http://localhost:8080/swagger-ui.html`): hacer 
 | `LoanMapperTest` | 1 | 7 |
 | `BookStockValidatorTest` | 1 | 8 |
 | `JwtServiceTest` | 1 | 9 |
+
+---
+
+## Mejoras futuras
+
+- **Internacionalización**: los mensajes ya están centralizados en clases de constantes (`ValidationMessages` y `ErrorMessages`); el siguiente paso sería moverlos a `messages.properties` con `MessageSource` para ofrecerlos en varios idiomas.
+- **Usuarios en base de datos**: sustituir los usuarios en memoria por una tabla y un `UserDetailsService` propio.
+- **Docker Compose**: levantar también un contenedor de MySQL para que los datos persistan.
+- **Organización por funcionalidad**: agrupar el código por dominio (`book`, `loan`…) en lugar de por capa.
+- **Migraciones versionadas** del esquema con Flyway.
+
+---
+
+## Autor
+
+**Jorge Martín Pérez Moreno** · Desarrollador Software Junior
+
+- LinkedIn: [jorge-martin-perez-moreno](https://www.linkedin.com/in/jorge-martin-perez-moreno)
+- Portfolio: [jorge-martin-dev.netlify.app](https://jorge-martin-dev.netlify.app/)
+- Email: jorgemartinpm@gmail.com
