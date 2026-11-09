@@ -34,6 +34,20 @@ Proyecto final del bootcamp **Back-End Java con GenAI** (Accenture · Universida
 | Tests | JUnit 5, Mockito, MockMvc |
 | Otros | Lombok (solo entidades), Maven, Docker |
 
+### Capturas
+
+**Documentación OpenAPI (Swagger UI)**: todos los endpoints, protegidos con JWT salvo el login.
+
+![Swagger UI](docs/capturas/library-01-swagger.png)
+
+**Regla de negocio**: crear un autor con el mismo nombre y apellidos que otro existente devuelve 409 con la estructura de error común.
+
+![Autor duplicado: 409 Conflict](docs/capturas/library-02-409.png)
+
+**Tests**: 12 tests con JUnit 5, Mockito y MockMvc.
+
+![Tests en verde](docs/capturas/library-03-tests.png)
+
 ---
 
 ## Requisitos previos
