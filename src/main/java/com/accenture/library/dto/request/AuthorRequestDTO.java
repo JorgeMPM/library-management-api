@@ -2,6 +2,7 @@ package com.accenture.library.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import com.accenture.library.constants.ValidationMessages;
 
 /*
  * Crea el record AuthorRequestDTO con tres componentes:
@@ -20,14 +21,14 @@ import jakarta.validation.constraints.Size;
  */
 public record AuthorRequestDTO(
     
-    @NotBlank(message = "El nombre del autor es obligatorio")
-    @Size(max = 100, message = "El nombre del autor no puede superar los 100 caracteres")
+    @NotBlank(message = ValidationMessages.AUTHOR_FIRST_NAME_REQUIRED)
+    @Size(max = 100, message = ValidationMessages.AUTHOR_FIRST_NAME_SIZE)
     String firstName, 
     
-    @NotBlank (message = "Los apellidos del autor son obligatorios")
-    @Size(max = 100, message = "Los apellidos del autor no pueden superar los 100 caracteres")
+    @NotBlank (message = ValidationMessages.AUTHOR_LAST_NAME_REQUIRED)
+    @Size(max = 100, message = ValidationMessages.AUTHOR_LAST_NAME_SIZE)
     String lastName, 
     
-    @Size(max = 100, message = "La nacionalidad no puede superar los 100 caracteres")
+    @Size(max = 100, message = ValidationMessages.AUTHOR_NATIONALITY_SIZE)
     String nationality) {
 }

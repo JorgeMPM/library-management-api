@@ -8,6 +8,7 @@ import java.lang.annotation.Target;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
+import com.accenture.library.constants.ValidationMessages;
 
 /*
  * Crea la anotación de validación de clase ValidBookStock con @Target(ElementType.TYPE), @Retention(RetentionPolicy.RUNTIME),
@@ -29,7 +30,7 @@ public @interface ValidBookStock {
      * Mensaje de error por defecto.
      * @return El mensaje de error.
      */
-    String message() default "El stock disponible no puede ser mayor que el stock total";
+    String message() default ValidationMessages.BOOK_STOCK_INVALID;
 
     /**
      * Grupos de validación.

@@ -8,6 +8,7 @@ import java.lang.annotation.Target;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
+import com.accenture.library.constants.ValidationMessages;
 
 /*
  * Crea la anotación de validación de clase ValidLoanDates con @Target(ElementType.TYPE), @Retention(RetentionPolicy.RUNTIME),
@@ -29,7 +30,7 @@ public @interface ValidLoanDates {
      * Mensaje de error por defecto.
      * @return El mensaje de error.
      */
-    String message() default "La fecha de devolución prevista no puede ser anterior a la fecha de préstamo";
+    String message() default ValidationMessages.LOAN_DATES_INVALID;
 
     /**
      * Grupos de validación.

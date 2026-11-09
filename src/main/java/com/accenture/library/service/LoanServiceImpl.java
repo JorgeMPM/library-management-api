@@ -20,6 +20,7 @@ import com.accenture.library.model.Loan;
 import com.accenture.library.model.LoanStatus;
 import com.accenture.library.repository.BookRepository;
 import com.accenture.library.repository.LoanRepository;
+import com.accenture.library.constants.ErrorMessages;
 
 
 
@@ -89,11 +90,11 @@ public class LoanServiceImpl implements LoanService {
     public LoanResponseDTO create(LoanRequestDTO dto) {
         Optional<Book> optionalBook = bookRepository.findById(dto.bookId());
         if (optionalBook.isEmpty()) {
-            throw new ReferencedResourceNotFoundException("El libro con id " + dto.bookId() + " no existe");
+            throw new ReferencedResourceNotFoundException(ErrorMessages.REFERENCED_BOOK_NOT_FOUND.formatted(dto.bookId()));
         }
         Book book = optionalBook.get();
         if (book.getAvailableStock() == 0) {
-            throw new BookOutOfStockException("El libro con id " + book.getId() + " no tiene stock disponible");
+            throw new BookOutOfStockException(ErrorMessages.BOOK_OUT_OF_STOCK.formatted(book.getId()));
         }
         Loan loan = loanMapper.toEntity(dto, book);
         loan.setStatus(LoanStatus.ACTIVE);
@@ -111,7 +112,7 @@ public class LoanServiceImpl implements LoanService {
     public LoanResponseDTO returnLoan(Long id) {
         Loan loan = findLoanOrThrow(id);
         if (loan.getStatus() == LoanStatus.RETURNED) {
-            throw new LoanAlreadyReturnedException("El préstamo con id " + id + " ya está devuelto");
+            throw new LoanAlreadyReturnedException(ErrorMessages.LOAN_ALREADY_RETURNED.formatted(id));
         }
         loan.setStatus(LoanStatus.RETURNED);
         loan.setActualReturnDate(LocalDate.now());
@@ -131,7 +132,7 @@ public class LoanServiceImpl implements LoanService {
     private Loan findLoanOrThrow(Long id) {
         Optional<Loan> loan = loanRepository.findById(id);
         if (loan.isEmpty()) {
-            throw new ResourceNotFoundException("Préstamo con id " + id + " no encontrado");
+            throw new ResourceNotFoundException(ErrorMessages.LOAN_NOT_FOUND.formatted(id));
         }
         return loan.get();
     }

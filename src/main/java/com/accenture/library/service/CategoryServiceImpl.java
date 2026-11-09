@@ -16,6 +16,7 @@ import com.accenture.library.repository.BookRepository;
 import com.accenture.library.repository.CategoryRepository;
 
 import org.springframework.transaction.annotation.Transactional;
+import com.accenture.library.constants.ErrorMessages;
 
 /*
  * Crea la clase CategoryServiceImpl anotada con @Service que implementa CategoryService,
@@ -69,7 +70,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Transactional
     public CategoryResponseDTO create(CategoryRequestDTO dto) {
         if (categoryRepository.existsByName(dto.name())) {
-            throw new DuplicateResourceException("Ya existe una categoría con el nombre '" + dto.name() + "'");
+            throw new DuplicateResourceException(ErrorMessages.CATEGORY_DUPLICATE_NAME.formatted(dto.name()));
         }
         Category category = categoryMapper.toEntity(dto);
         return categoryMapper.toResponseDTO(categoryRepository.save(category));
@@ -82,10 +83,10 @@ public class CategoryServiceImpl implements CategoryService {
     @Transactional
     public void delete(Long id) {
         if (!categoryRepository.existsById(id)) {
-            throw new ResourceNotFoundException("Categoría con id " + id + " no encontrada");
+            throw new ResourceNotFoundException(ErrorMessages.CATEGORY_NOT_FOUND.formatted(id));
         }
         if (bookRepository.existsByCategoryId(id)) {
-            throw new ResourceInUseException("No se puede eliminar la categoría con id " + id + " porque tiene libros asignados");
+            throw new ResourceInUseException(ErrorMessages.CATEGORY_IN_USE.formatted(id));
         }
         categoryRepository.deleteById(id);
     }

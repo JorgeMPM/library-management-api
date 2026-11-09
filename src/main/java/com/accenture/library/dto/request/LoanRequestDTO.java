@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.validation.constraints.NotNull;
+import com.accenture.library.constants.ValidationMessages;
 
 /*
  * Crea el record LoanRequestDTO con tres componentes:
@@ -21,14 +22,14 @@ import jakarta.validation.constraints.NotNull;
  */
 public record LoanRequestDTO(
     
-    @NotNull(message = "El id del libro es obligatorio")
+    @NotNull(message = ValidationMessages.LOAN_BOOK_ID_REQUIRED)
     Long bookId, 
     
-    @NotNull(message = "La fecha de préstamo es obligatoria")
+    @NotNull(message = ValidationMessages.LOAN_DATE_REQUIRED)
     @JsonFormat(pattern = "dd-MM-yyyy")
     LocalDate loanDate, 
     
-    @NotNull(message = "La fecha de devolución prevista es obligatoria")
+    @NotNull(message = ValidationMessages.LOAN_EXPECTED_RETURN_DATE_REQUIRED)
     @JsonFormat(pattern = "dd-MM-yyyy")
     LocalDate expectedReturnDate) {
 }

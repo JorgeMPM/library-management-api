@@ -17,6 +17,7 @@ import com.accenture.library.repository.AuthorRepository;
 import com.accenture.library.repository.BookRepository;
 
 import org.springframework.transaction.annotation.Transactional;
+import com.accenture.library.constants.ErrorMessages;
 
 /*
  * Crea la clase AuthorServiceImpl anotada con @Service que implementa AuthorService, con campos final AuthorRepository,
@@ -82,9 +83,9 @@ public class AuthorServiceImpl implements AuthorService {
     @Transactional
     public AuthorResponseDTO create(AuthorRequestDTO dto) {
         if (authorRepository.existsByFirstNameIgnoreCaseAndLastNameIgnoreCase(dto.firstName(), dto.lastName())) {
-        throw new DuplicateResourceException(
-                "Ya existe un autor con el nombre '" + dto.firstName() + " " + dto.lastName() + "'");
-    }
+            throw new DuplicateResourceException(
+                    ErrorMessages.AUTHOR_DUPLICATE_NAME.formatted(dto.firstName(), dto.lastName()));
+        }
         Author author = authorMapper.toEntity(dto);
         return authorMapper.toResponseDTO(authorRepository.save(author));
     }
@@ -98,9 +99,9 @@ public class AuthorServiceImpl implements AuthorService {
         Author author = findAuthorOrThrow(id);
 
         if (authorRepository.existsByFirstNameIgnoreCaseAndLastNameIgnoreCaseAndIdNot(dto.firstName(), dto.lastName(), id)) {
-        throw new DuplicateResourceException(
-                "Ya existe un autor con el nombre '" + dto.firstName() + " " + dto.lastName() + "'");
-    }
+            throw new DuplicateResourceException(
+                    ErrorMessages.AUTHOR_DUPLICATE_NAME.formatted(dto.firstName(), dto.lastName()));
+        }
     
         authorMapper.updateEntity(author, dto);
         return authorMapper.toResponseDTO(authorRepository.save(author));
@@ -113,10 +114,10 @@ public class AuthorServiceImpl implements AuthorService {
     @Transactional 
     public void delete(Long id) {
         if (!authorRepository.existsById(id)) {
-            throw new ResourceNotFoundException("Autor con id " + id + " no encontrado");
+            throw new ResourceNotFoundException(ErrorMessages.AUTHOR_NOT_FOUND.formatted(id));
         }
         if (bookRepository.existsByAuthorsId(id)) {
-            throw new ResourceInUseException("No se puede eliminar el autor con id " + id + " porque tiene libros asignados");
+            throw new ResourceInUseException(ErrorMessages.AUTHOR_IN_USE.formatted(id));
         }
         authorRepository.deleteById(id);
     }
@@ -130,7 +131,7 @@ public class AuthorServiceImpl implements AuthorService {
     private Author findAuthorOrThrow(Long id) {
         Optional<Author> author = authorRepository.findById(id);
         if (author.isEmpty()) {
-            throw new ResourceNotFoundException("Autor con id " + id + " no encontrado");
+            throw new ResourceNotFoundException(ErrorMessages.AUTHOR_NOT_FOUND.formatted(id));
         }
         return author.get();
     }

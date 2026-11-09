@@ -25,6 +25,7 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
 import com.accenture.library.dto.response.ErrorResponseDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
+import com.accenture.library.constants.ErrorMessages;
 
 /*
  * Crea la clase GlobalExceptionHandler con @RestControllerAdvice. Un método privado build(HttpStatus, String message,
@@ -95,8 +96,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponseDTO> handleNotReadable(HttpMessageNotReadableException ex,
             HttpServletRequest request) {
         return build(HttpStatus.BAD_REQUEST,
-                "El cuerpo de la petición no es válido: JSON mal formado o valor no válido en algún campo"
-                        + " (las fechas deben tener el formato dd-MM-yyyy)",
+                ErrorMessages.MALFORMED_BODY,
                 request);
     }
 
@@ -111,7 +111,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponseDTO> handleTypeMismatch(MethodArgumentTypeMismatchException ex,
             HttpServletRequest request) {
         return build(HttpStatus.BAD_REQUEST,
-                "El parámetro '" + ex.getName() + "' tiene un valor no válido: '" + ex.getValue() + "'", request);
+                ErrorMessages.INVALID_PARAMETER.formatted(ex.getName(), ex.getValue()), request);
     }
 
     /**
@@ -124,7 +124,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public ResponseEntity<ErrorResponseDTO> handleMissingParameter(MissingServletRequestParameterException ex,
             HttpServletRequest request) {
-        return build(HttpStatus.BAD_REQUEST, "Falta el parámetro obligatorio '" + ex.getParameterName() + "'", request);
+        return build(HttpStatus.BAD_REQUEST, ErrorMessages.MISSING_PARAMETER.formatted(ex.getParameterName()), request);
     }
 
     /**
@@ -160,7 +160,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(NoResourceFoundException.class)
     public ResponseEntity<ErrorResponseDTO> handleNoRoute(NoResourceFoundException ex, HttpServletRequest request) {
-        return build(HttpStatus.NOT_FOUND, "La ruta " + request.getRequestURI() + " no existe", request);
+        return build(HttpStatus.NOT_FOUND, ErrorMessages.ROUTE_NOT_FOUND.formatted(request.getRequestURI()), request);
     }
 
     /**
@@ -174,7 +174,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponseDTO> handleMethodNotAllowed(HttpRequestMethodNotSupportedException ex,
             HttpServletRequest request) {
         return build(HttpStatus.METHOD_NOT_ALLOWED,
-                "El método " + ex.getMethod() + " no está permitido en la ruta " + request.getRequestURI(), request);
+                ErrorMessages.METHOD_NOT_ALLOWED.formatted(ex.getMethod(), request.getRequestURI()), request);
     }
 
     /**
@@ -187,7 +187,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(HttpMediaTypeNotAcceptableException.class)
     public ResponseEntity<ErrorResponseDTO> handleNotAcceptable(HttpMediaTypeNotAcceptableException ex,
             HttpServletRequest request) {
-        return build(HttpStatus.NOT_ACCEPTABLE, "La API solo puede responder en formato JSON", request);
+        return build(HttpStatus.NOT_ACCEPTABLE, ErrorMessages.NOT_ACCEPTABLE, request);
     }
 
     /**
@@ -201,7 +201,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponseDTO> handleUnsupportedMediaType(HttpMediaTypeNotSupportedException ex,
             HttpServletRequest request) {
         return build(HttpStatus.UNSUPPORTED_MEDIA_TYPE,
-                "El tipo de contenido " + ex.getContentType() + " no está soportado; usa application/json", request);
+                ErrorMessages.UNSUPPORTED_MEDIA_TYPE.formatted(ex.getContentType()), request);
     }
 
     /**
@@ -227,7 +227,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<ErrorResponseDTO> handleDataIntegrity(DataIntegrityViolationException ex,
             HttpServletRequest request) {
-        return build(HttpStatus.CONFLICT, "La operación viola una restricción de la base de datos (valor único repetido)",
+        return build(HttpStatus.CONFLICT, ErrorMessages.DATA_INTEGRITY_VIOLATION,
                 request);
     }
 
@@ -240,9 +240,9 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(AuthenticationException.class)
     public ResponseEntity<ErrorResponseDTO> handleUnauthorized(AuthenticationException ex, HttpServletRequest request) {
-        String message = "Se requiere un token válido para acceder a este recurso";
+        String message = ErrorMessages.TOKEN_REQUIRED;
         if (ex instanceof BadCredentialsException) {
-            message = "Credenciales incorrectas";
+            message = ErrorMessages.BAD_CREDENTIALS;
         }
         return build(HttpStatus.UNAUTHORIZED, message, request);
     }
@@ -256,7 +256,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(AccessDeniedException.class)
     public ResponseEntity<ErrorResponseDTO> handleForbidden(AccessDeniedException ex, HttpServletRequest request) {
-        return build(HttpStatus.FORBIDDEN, "No tienes permiso para realizar esta operación", request);
+        return build(HttpStatus.FORBIDDEN, ErrorMessages.ACCESS_DENIED, request);
     }
 
     /**
@@ -268,6 +268,6 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponseDTO> handleGeneric(Exception ex, HttpServletRequest request) {
-        return build(HttpStatus.INTERNAL_SERVER_ERROR, "Error interno del servidor", request);
+        return build(HttpStatus.INTERNAL_SERVER_ERROR, ErrorMessages.INTERNAL_ERROR, request);
     }
 }

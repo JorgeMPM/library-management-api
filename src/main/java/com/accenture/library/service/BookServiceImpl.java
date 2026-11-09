@@ -30,6 +30,7 @@ import com.accenture.library.repository.CategoryRepository;
 import com.accenture.library.repository.LoanRepository;
 
 import org.springframework.transaction.annotation.Transactional;
+import com.accenture.library.constants.ErrorMessages;
 
 /*
  * Crea la clase BookServiceImpl anotada con @Service que implementa BookService, con campos final BookRepository,
@@ -96,7 +97,7 @@ public class BookServiceImpl implements BookService {
     private Book findBookOrThrow(Long id) {
         Optional<Book> book = bookRepository.findById(id);
         if (book.isEmpty()) {
-            throw new ResourceNotFoundException("Libro con id " + id + " no encontrado");
+            throw new ResourceNotFoundException(ErrorMessages.BOOK_NOT_FOUND.formatted(id));
         }
         return book.get();
     }
@@ -115,7 +116,7 @@ public class BookServiceImpl implements BookService {
         }
         Optional<Category> category = categoryRepository.findById(categoryId);
         if (category.isEmpty()) {
-            throw new ReferencedResourceNotFoundException("La categoría con id " + categoryId + " no existe");
+            throw new ReferencedResourceNotFoundException(ErrorMessages.REFERENCED_CATEGORY_NOT_FOUND.formatted(categoryId));
         }
         return category.get();
     }
@@ -133,11 +134,11 @@ public class BookServiceImpl implements BookService {
         Set<Author> authors = new HashSet<>();
         for (Long authorId : authorIds) {
             if (authorId == null) {
-                throw new ReferencedResourceNotFoundException("El autor con id null no existe");
+                throw new ReferencedResourceNotFoundException(ErrorMessages.REFERENCED_AUTHOR_NOT_FOUND.formatted(authorId));
             }
             Optional<Author> author = authorRepository.findById(authorId);
             if (author.isEmpty()) {
-                throw new ReferencedResourceNotFoundException("El autor con id " + authorId + " no existe");
+                throw new ReferencedResourceNotFoundException(ErrorMessages.REFERENCED_AUTHOR_NOT_FOUND.formatted(authorId));
             }
             authors.add(author.get());
         }
@@ -197,14 +198,14 @@ public class BookServiceImpl implements BookService {
         int pageNumber = 0;
         if (page != null) {
             if (page < 0) {
-                throw new InvalidQueryParameterException("El parámetro page no puede ser negativo");
+                throw new InvalidQueryParameterException(ErrorMessages.PAGE_NEGATIVE);
             }
             pageNumber = page;
         }
         int pageSize = 20;
         if (size != null) {
             if (size < 1) {
-                throw new InvalidQueryParameterException("El parámetro size debe ser al menos 1");
+                throw new InvalidQueryParameterException(ErrorMessages.SIZE_MIN);
             }
             pageSize = Math.min(size, 100);
         }
@@ -226,16 +227,15 @@ public class BookServiceImpl implements BookService {
             return Sort.by(Sort.Order.asc("title"), Sort.Order.asc("id"));
         }
         if (sort.length != 1) {
-            throw new InvalidQueryParameterException("Solo se admite un criterio de ordenación");
+            throw new InvalidQueryParameterException(ErrorMessages.SORT_SINGLE);
         }
         String[] parts = sort[0].split(",", -1);
         if (parts.length > 2) {
-            throw new InvalidQueryParameterException("El parámetro sort debe tener el formato campo o campo,dirección");
+            throw new InvalidQueryParameterException(ErrorMessages.SORT_FORMAT);
         }
         String field = parts[0];
         if (!SORTABLE_FIELDS.contains(field)) {
-            throw new InvalidQueryParameterException("No se puede ordenar por '" + field
-                    + "'. Campos permitidos: title, isbn, publishedYear, availableStock, totalStock");
+            throw new InvalidQueryParameterException(ErrorMessages.SORT_FIELD_INVALID.formatted(field));
         }
         Sort.Direction direction = Sort.Direction.ASC;
         if (parts.length == 2) {
@@ -244,7 +244,7 @@ public class BookServiceImpl implements BookService {
             } else if (parts[1].equalsIgnoreCase("desc")) {
                 direction = Sort.Direction.DESC;
             } else {
-                throw new InvalidQueryParameterException("La dirección de ordenación debe ser asc o desc");
+                throw new InvalidQueryParameterException(ErrorMessages.SORT_DIRECTION_INVALID);
             }
         }
         return Sort.by(new Sort.Order(direction, field), Sort.Order.asc("id"));
@@ -274,7 +274,7 @@ public class BookServiceImpl implements BookService {
             authors = resolveAuthors(dto.authorIds());
         }
         if (bookRepository.existsByIsbn(dto.isbn())) {
-            throw new DuplicateResourceException("Ya existe un libro con el ISBN '" + dto.isbn() + "'");
+            throw new DuplicateResourceException(ErrorMessages.BOOK_DUPLICATE_ISBN.formatted(dto.isbn()));
         }
         Book book = bookMapper.toEntity(dto);
         book.setCategory(category);
@@ -298,7 +298,7 @@ public class BookServiceImpl implements BookService {
         }
         Book book = findBookOrThrow(id);
         if (bookRepository.existsByIsbnAndIdNot(dto.isbn(), id)) {
-            throw new DuplicateResourceException("Ya existe un libro con el ISBN '" + dto.isbn() + "'");
+            throw new DuplicateResourceException(ErrorMessages.BOOK_DUPLICATE_ISBN.formatted(dto.isbn()));
         }
         bookMapper.updateBasicFields(book, dto);
         if (newCategory != null) {
@@ -319,8 +319,7 @@ public class BookServiceImpl implements BookService {
     public void delete(Long id) {
         Book book = findBookOrThrow(id);
         if (loanRepository.existsByBookId(id)) {
-            throw new ResourceInUseException(
-                    "No se puede eliminar el libro con id " + id + " porque tiene préstamos asociados");
+            throw new ResourceInUseException(ErrorMessages.BOOK_IN_USE.formatted(id));
         }
         bookRepository.delete(book);
     }
