@@ -11,14 +11,6 @@ import com.accenture.library.dto.response.BookResponseDTO;
 import com.accenture.library.model.Author;
 import com.accenture.library.model.Book;
 
-/*
- * Crea la clase BookMapper anotada con @Component, con un campo final AuthorMapper inyectado por constructor.
- * Método toEntity(BookRequestDTO dto): crea un Book nuevo y llama a updateBasicFields.
- * Método updateBasicFields(Book book, BookRequestDTO dto): asigna title, isbn, publishedYear, availableStock y totalStock.
- * Método toResponseDTO(Book book): categoryId y categoryName a null si book.getCategory() es null
- * authors como List<AuthorResponseDTO> ordenada por id ascendente, insertando cada autor en su posición con un bucle while.
- * Sin lambdas ni streams. Añade Javadoc en español a la clase, al constructor y a cada método. — generado por IA
- */
 /**
  * Mapeador para convertir entre BookRequestDTO, Book y BookResponseDTO.
  */

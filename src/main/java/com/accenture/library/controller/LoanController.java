@@ -25,14 +25,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
-/*
- * Crea el @RestController LoanController con @RequestMapping("/api/v1/loans") y @Tag(name = "Préstamos"),
- * con un campo final LoanService inyectado por constructor.
- * GET: findAll 200. GET /{id}: 200. POST con @Valid @RequestBody LoanRequestDTO: 201. PUT /{id}/return sin body: 200.
- * @ApiResponses en español: GET 200 y 401; GET /{id} 200, 404 y 401; POST 201, 400, 409 y 401; PUT return 200, 404, 409 y 401
- * en 400, 401, 404 y 409 content con schema ErrorResponseDTO.
- * Sin try/catch ni lambdas. Javadoc en español en la clase, el constructor y cada método. — generado por IA
- */
 /**
  * Controlador REST para gestionar los préstamos de libros en la biblioteca.
  */

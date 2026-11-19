@@ -6,13 +6,6 @@ import com.accenture.library.dto.request.AuthorRequestDTO;
 import com.accenture.library.dto.response.AuthorResponseDTO;
 import com.accenture.library.model.Author;
 
-/*
- * Crea la clase AuthorMapper anotada con @Component.
- * Método toEntity(AuthorRequestDTO dto): crea un Author nuevo con firstName, lastName y nationality del dto.
- * Método updateEntity(Author author, AuthorRequestDTO dto): asigna al author existente firstName, lastName y nationality del dto.
- * Método toResponseDTO(Author author): devuelve un AuthorResponseDTO con id, firstName, lastName y nationality.
- * Sin lambdas. Añade Javadoc en español a la clase y a cada método. — generado por IA
- */
 /**
  * Mapeador para convertir entre AuthorRequestDTO, Author y AuthorResponseDTO.
  */

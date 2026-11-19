@@ -1,9 +1,5 @@
 package com.accenture.library.dto.response;
 
-/*
- * Crea el record AuthorResponseDTO con los componentes id Long, firstName String, lastName String y nationality String.
- * Añade Javadoc en español al record con un @param por componente. — generado por IA
- */
 /**
  * Representa la respuesta de un autor en la biblioteca.
  * @param id El ID del autor.

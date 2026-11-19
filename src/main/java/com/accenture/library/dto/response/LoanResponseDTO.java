@@ -5,11 +5,6 @@ import java.time.LocalDate;
 import com.accenture.library.model.LoanStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-/*
- * Crea el record LoanResponseDTO con los componentes: id Long, bookId Long, bookTitle String,
- * loanDate LocalDate, expectedReturnDate LocalDate y actualReturnDate LocalDate, los tres con @JsonFormat(pattern = "dd-MM-yyyy"),
- * y status LoanStatus. Añade Javadoc en español al record con un @param por componente. — generado por IA
- */
 /**
  * Representa la respuesta de un préstamo en la biblioteca.
  * @param id El ID del préstamo.

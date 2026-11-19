@@ -24,17 +24,6 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 
-/*
- * Crea la clase @Configuration @EnableWebSecurity SecurityConfig con campos final JwtAuthenticationFilter y
- * HandlerExceptionResolver (@Qualifier("handlerExceptionResolver")) inyectados por constructor.
- * Bean SecurityFilterChain: csrf desactivado, cors(Customizer.withDefaults()), sesión STATELESS
- * permitAll en POST /auth/login, /swagger-ui.html, /swagger-ui/**, /v3/api-docs/** y /error
- * DELETE /api/v1/books/*, /api/v1/authors/* y /api/v1/categories/* solo hasRole("ADMIN"); el resto authenticated
- * authenticationEntryPoint y accessDeniedHandler delegan en resolver.resolveException; el filtro JWT antes de UsernamePasswordAuthenticationFilter.
- * Beans: PasswordEncoder BCrypt; UserDetailsService InMemoryUserDetailsManager con admin/admin123 rol ADMIN y user/user123 rol USER,
- * marcado con // TODO: en producción esto debe venir de base de datos; AuthenticationManager desde AuthenticationConfiguration
- * CorsConfigurationSource del enunciado. Javadoc en español en la clase, el constructor y cada método. — generado por IA
- */
 /**
  * Configuración de Spring Security: autenticación JWT sin sesión, rutas públicas, permisos por rol y CORS.
  */

@@ -1,9 +1,5 @@
 package com.accenture.library.dto.response;
 
-/*
- * Crea el record CategoryResponseDTO con los componentes id Long, name String y description String.
- * Añade Javadoc en español al record con un @param por componente. — generado por IA
- */
 /**
  * Representa la respuesta de una categoría en la biblioteca.
  * @param id El ID de la categoría.

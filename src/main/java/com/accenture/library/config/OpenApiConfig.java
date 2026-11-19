@@ -13,12 +13,6 @@ import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.servers.Server;
 
-/*
- * Crea la clase @Configuration OpenApiConfig con un @Bean OpenAPI: Info con título "API REST de Gestión de Biblioteca",
- * descripción en español, versión "1.0.0" y Contact con nombre y email; servidor http://localhost:8080;
- * Components con un SecurityScheme "bearerAuth" de tipo HTTP, scheme "bearer" y bearerFormat "JWT"
- * y un SecurityRequirement global con "bearerAuth". Javadoc en español en la clase y el método. — generado por IA
- */
 /**
  * Configuración de la documentación OpenAPI (Swagger UI), con autenticación Bearer JWT.
  */

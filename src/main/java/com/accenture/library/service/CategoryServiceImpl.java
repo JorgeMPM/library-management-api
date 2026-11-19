@@ -18,16 +18,6 @@ import com.accenture.library.repository.CategoryRepository;
 import org.springframework.transaction.annotation.Transactional;
 import com.accenture.library.constants.ErrorMessages;
 
-/*
- * Crea la clase CategoryServiceImpl anotada con @Service que implementa CategoryService,
- * con campos final CategoryRepository, BookRepository y CategoryMapper inyectados por constructor.
- * findAll(): @Transactional(readOnly = true), recorre categoryRepository.findAllByOrderByIdAsc() con un for y convierte con el mapper.
- * create(dto): @Transactional; si categoryRepository.existsByName(dto.name()) lanza DuplicateResourceException
- * "Ya existe una categoría con el nombre '<name>'"; si no, guarda y devuelve el DTO.
- * delete(id): @Transactional; si no existe lanza ResourceNotFoundException "Categoría con id <id> no encontrada"
- * si bookRepository.existsByCategoryId(id) lanza ResourceInUseException "No se puede eliminar la categoría con id <id> porque tiene libros asignados"
- * si no, deleteById. Sin lambdas ni streams. Añade Javadoc en español a la clase, al constructor y a cada método. — generado por IA
- */
 /**
  * Implementación del servicio para gestionar categorías en la biblioteca.
  */

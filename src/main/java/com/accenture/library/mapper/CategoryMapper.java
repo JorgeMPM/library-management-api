@@ -6,12 +6,6 @@ import com.accenture.library.dto.request.CategoryRequestDTO;
 import com.accenture.library.dto.response.CategoryResponseDTO;
 import com.accenture.library.model.Category;
 
-/*
- * Crea la clase CategoryMapper anotada con @Component.
- * Método toEntity(CategoryRequestDTO dto): crea un Category nuevo y le asigna name y description del dto.
- * Método toResponseDTO(Category category): devuelve un CategoryResponseDTO con id, name y description.
- * Sin lambdas. Añade Javadoc en español a la clase y a cada método. — generado por IA
- */
 /**
  * Mapeador para convertir entre CategoryRequestDTO, Category y CategoryResponseDTO.
  */

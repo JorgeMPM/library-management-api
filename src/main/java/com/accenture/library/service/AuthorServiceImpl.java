@@ -19,15 +19,6 @@ import com.accenture.library.repository.BookRepository;
 import org.springframework.transaction.annotation.Transactional;
 import com.accenture.library.constants.ErrorMessages;
 
-/*
- * Crea la clase AuthorServiceImpl anotada con @Service que implementa AuthorService, con campos final AuthorRepository,
- * BookRepository y AuthorMapper inyectados por constructor. Método privado findAuthorOrThrow(Long id) que usa findById
- * y, si el Optional está vacío, lanza ResourceNotFoundException "Autor con id <id> no encontrado" (con if, sin orElseThrow).
- * findAll y findById con @Transactional(readOnly = true); create, update y delete con @Transactional.
- * delete: si bookRepository.existsByAuthorsId(id) lanza ResourceInUseException
- * "No se puede eliminar el autor con id <id> porque tiene libros asignados".
- * Sin lambdas ni streams. Añade Javadoc en español a la clase, al constructor y a cada método. — generado por IA
- */
 /**
  * Implementación del servicio para gestionar autores en la biblioteca.
  */

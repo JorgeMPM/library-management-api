@@ -12,16 +12,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import com.accenture.library.constants.ValidationMessages;
 
-/*
- * Crea el record BookRequestDTO con @Schema(description, example) en español en cada componente:
- * title String con @NotBlank(message = "El título es obligatorio") y @Size(max = 150, message = "El título no puede superar los 150 caracteres")
- * isbn String con @NotBlank(message = "El ISBN es obligatorio") y @Size(max = 20, message = "El ISBN no puede superar los 20 caracteres")
- * publishedYear Integer con @Min(value = 1000, message = "El año de publicación debe estar entre 1000 y 2100") y @Max(value = 2100, mismo mensaje)
- * availableStock Integer con @NotNull(message = "El stock disponible es obligatorio") y @Min(value = 0, message = "El stock disponible no puede ser negativo")
- * totalStock Integer con @NotNull(message = "El stock total es obligatorio") y @Min(value = 1, message = "El stock total debe ser al menos 1")
- * categoryId Long; authorIds List<Long>.
- * Añade Javadoc en español al record con un @param por componente. — generado por IA
- */
 /**
  * Representa una solicitud para crear o actualizar un libro en la biblioteca.
  * @param title El título del libro.

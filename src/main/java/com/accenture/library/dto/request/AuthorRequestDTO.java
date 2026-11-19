@@ -4,15 +4,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import com.accenture.library.constants.ValidationMessages;
 
-/*
- * Crea el record AuthorRequestDTO con tres componentes:
- * firstName String con @NotBlank(message = "El nombre del autor es obligatorio")
- * y @Size(max = 100, message = "El nombre del autor no puede superar los 100 caracteres");
- * lastName String con @NotBlank(message = "Los apellidos del autor son obligatorios")
- * y @Size(max = 100, message = "Los apellidos del autor no pueden superar los 100 caracteres");
- * nationality String con @Size(max = 100, message = "La nacionalidad no puede superar los 100 caracteres").
- * Añade Javadoc en español al record con un @param por componente. — generado por IA
- */
 /**
  * Representa una solicitud para crear o actualizar un autor en la biblioteca.
  * @param firstName El nombre del autor.

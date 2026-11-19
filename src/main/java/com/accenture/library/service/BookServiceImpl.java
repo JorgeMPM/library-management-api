@@ -32,16 +32,6 @@ import com.accenture.library.repository.LoanRepository;
 import org.springframework.transaction.annotation.Transactional;
 import com.accenture.library.constants.ErrorMessages;
 
-/*
- * Crea la clase BookServiceImpl anotada con @Service que implementa BookService, con campos final BookRepository,
- * CategoryRepository, AuthorRepository, LoanRepository y BookMapper inyectados por constructor.
- * Métodos privados, con if y sin orElseThrow ni lambdas:
- * findBookOrThrow(Long id): si no existe lanza ResourceNotFoundException "Libro con id <id> no encontrado"
- * resolveCategory(Long categoryId): devuelve la Category o lanza ReferencedResourceNotFoundException "La categoría con id <id> no existe"
- * resolveAuthors(List<Long> authorIds): devuelve un Set<Author>; por cada id, si es null o no existe lanza
- * ReferencedResourceNotFoundException "El autor con id <id> no existe".
- * Añade Javadoc en español a la clase, al constructor y a cada método. — generado por IA
- */
 /**
  * Implementación del servicio de gestión de libros en la biblioteca.
  * Esta clase proporciona métodos para realizar operaciones CRUD sobre los
@@ -145,25 +135,6 @@ public class BookServiceImpl implements BookService {
         return authors;
     }
 
-    /*
-     * Añade la constante SORTABLE_FIELDS = List.of("title", "isbn",
-     * "publishedYear", "availableStock", "totalStock").
-     * Añade el método findAll(page, size, sort, categoryId, authorId, available)
-     * con @Transactional(readOnly = true): construye el Pageable con
-     * buildPageable, llama a bookRepository.findByFilters, convierte el contenido
-     * con un for y devuelve un PageResponseDTO.
-     * Método privado buildPageable(Integer page, Integer size, String[] sort): page
-     * por defecto 0 y si es negativo lanza
-     * InvalidQueryParameterException; size por defecto 20, si es menor que 1 lanza
-     * la excepción y si es mayor que 100 usa 100.
-     * Método privado parseSort(String[] sort): si es null ordena por title asc; si
-     * llega más de un valor, o el formato no es
-     * campo o campo,dirección, o el campo no está en SORTABLE_FIELDS, o la
-     * dirección no es asc/desc (sin distinguir mayúsculas),
-     * lanza InvalidQueryParameterException. Siempre añade id asc como desempate.
-     * Sin lambdas ni streams. Mensajes en español. Javadoc en español en cada
-     * método. — generado por IA
-     */
     /**
      * {@inheritDoc}
      * 
