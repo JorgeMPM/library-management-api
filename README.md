@@ -49,6 +49,23 @@ Proyecto final del bootcamp **Back-End Java con GenAI** (Accenture · Universida
 ![Tests en verde](docs/capturas/library-03-tests.png)
 
 ---
+### Diagramas
+
+**Modelo de datos (ERD)**
+
+![Modelo de datos](docs/diagrams/erd.svg)
+
+**Arquitectura**
+
+![Arquitectura](docs/diagrams/arquitectura.svg)
+
+**Flujo de creación de un préstamo**
+
+![Secuencia crear préstamo](docs/diagrams/secuencia-crear-prestamo.svg)
+
+**Ciclo de vida de un préstamo**
+
+![Ciclo de vida del préstamo](docs/diagrams/ciclo-vida-prestamo.svg)
 
 ## Requisitos previos
 
