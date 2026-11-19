@@ -25,15 +25,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
-/*
- * Crea el @RestController en la clase CategoryController con @RequestMapping("/api/v1/categories") y @Tag(name = "Categorías"),
- * con un campo final CategoryService inyectado por constructor.
- * GET: findAll, devuelve 200. POST con @Valid @RequestBody CategoryRequestDTO: devuelve 201 con el creado.
- * DELETE /{id}: devuelve 204 sin body.
- * Cada método con @Operation(summary) y @ApiResponses en español: GET 200 y 401; POST 201, 400, 409 y 401
- * DELETE 204, 404, 409, 401 y 403; en 400, 401, 403, 404 y 409 content con schema ErrorResponseDTO.
- * Sin try/catch ni lambdas. Javadoc en español en la clase, el constructor y cada método. — generado por IA
- */
 /**
  * Controlador REST para gestionar las categorías de libros en la biblioteca.
  */

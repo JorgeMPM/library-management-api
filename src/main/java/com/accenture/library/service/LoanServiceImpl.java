@@ -24,18 +24,6 @@ import com.accenture.library.constants.ErrorMessages;
 
 
 
-/*
- * Crea la clase LoanServiceImpl anotada con @Service que implementa LoanService, con campos final LoanRepository,
- * BookRepository y LoanMapper inyectados por constructor.
- * findAll y findById con @Transactional(readOnly = true); findById usa el método privado findLoanOrThrow
- * (ResourceNotFoundException "Préstamo con id <id> no encontrado", con if y sin orElseThrow).
- * create(dto) con @Transactional: busca el libro y si no existe lanza ReferencedResourceNotFoundException "El libro con id <id> no existe"
- * si availableStock es 0 lanza BookOutOfStockException "El libro con id <id> no tiene stock disponible"
- * crea el Loan con el mapper, status ACTIVE, actualReturnDate null, resta 1 al availableStock, guarda y devuelve el DTO.
- * returnLoan(id) con @Transactional: findLoanOrThrow; si status es RETURNED lanza LoanAlreadyReturnedException
- * "El préstamo con id <id> ya está devuelto"; pone RETURNED, actualReturnDate LocalDate.now(), suma 1 al availableStock y guarda.
- * Sin lambdas ni streams. Añade Javadoc en español a la clase, al constructor y a cada método. — generado por IA
- */
 /**
  * Implementación del servicio de préstamos de libros.
  * Proporciona métodos para crear, devolver y consultar préstamos.

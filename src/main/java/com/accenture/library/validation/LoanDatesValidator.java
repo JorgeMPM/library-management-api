@@ -5,12 +5,6 @@ import com.accenture.library.dto.request.LoanRequestDTO;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
-/*
- * Crea la clase LoanDatesValidator que implementa ConstraintValidator<ValidLoanDates, LoanRequestDTO>.
- * Método isValid(LoanRequestDTO dto, ConstraintValidatorContext context): si dto es null, o loanDate
- * o expectedReturnDate son null, devuelve true; si no, devuelve !expectedReturnDate.isBefore(loanDate).
- * Sin lambdas. Añade Javadoc en español a la clase y al método. — generado por IA
- */
 /**
  * Validador para las fechas de préstamo.
  */

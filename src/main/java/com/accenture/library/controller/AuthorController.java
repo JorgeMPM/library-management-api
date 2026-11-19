@@ -26,16 +26,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 
-/*
- * Crea el @RestController AuthorController con @RequestMapping("/api/v1/authors") y @Tag(name = "Autores"),
- * con un campo final AuthorService inyectado por constructor.
- * GET: findAll 200. GET /{id}: findById 200. POST con @Valid @RequestBody AuthorRequestDTO: 201.
- * PUT /{id} con @Valid @RequestBody AuthorRequestDTO: 200. DELETE /{id}: 204 sin body.
- * Cada método con @Operation(summary) y @ApiResponses en español: GET 200 y 401; GET /{id} 200, 404 y 401
- * POST 201, 400 y 401; PUT 200, 400, 404 y 401; DELETE 204, 404, 409, 401 y 403;
- * en 400, 401, 403, 404 y 409 content con schema ErrorResponseDTO.
- * Sin try/catch ni lambdas. Javadoc en español en la clase, el constructor y cada método. — generado por IA
- */
 /** 
  * Controlador para la gestión de autores.
  */

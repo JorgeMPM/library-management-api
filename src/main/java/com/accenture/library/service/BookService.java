@@ -4,13 +4,6 @@ import com.accenture.library.dto.request.BookRequestDTO;
 import com.accenture.library.dto.response.BookResponseDTO;
 import com.accenture.library.dto.response.PageResponseDTO;
 
-/*
- * Crea la interfaz BookService con los métodos:
- * PageResponseDTO<BookResponseDTO> findAll(Integer page, Integer size, String[] sort, Long categoryId, Long authorId, Boolean available)
- * BookResponseDTO findById(Long id); BookResponseDTO create(BookRequestDTO dto)
- * BookResponseDTO update(Long id, BookRequestDTO dto); void delete(Long id).
- * Añade Javadoc en español a la interfaz y a cada método. — generado por IA
- */
 /**
  * Interfaz de servicio para gestionar libros en la biblioteca.
  */

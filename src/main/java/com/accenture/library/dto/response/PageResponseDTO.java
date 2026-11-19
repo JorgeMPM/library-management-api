@@ -2,11 +2,6 @@ package com.accenture.library.dto.response;
 
 import java.util.List;
 
-/*
- * Crea el record genérico PageResponseDTO<T> con los componentes: content List<T>, pageNumber int, pageSize int,
- * totalElements long, totalPages int y last boolean.
- * Añade Javadoc en español al record con un @param por componente y @param <T> para el tipo. — generado por IA
- */
 /**
  * Representa una respuesta de paginación genérica para cualquier tipo de contenido.
  * @param <T> El tipo de contenido de la página.

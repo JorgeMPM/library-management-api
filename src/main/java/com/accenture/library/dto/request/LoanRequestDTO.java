@@ -7,13 +7,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotNull;
 import com.accenture.library.constants.ValidationMessages;
 
-/*
- * Crea el record LoanRequestDTO con tres componentes:
- * bookId Long con @NotNull(message = "El id del libro es obligatorio")
- * loanDate LocalDate con @NotNull(message = "La fecha de préstamo es obligatoria") y @JsonFormat(pattern = "dd-MM-yyyy")
- * expectedReturnDate LocalDate con @NotNull(message = "La fecha de devolución prevista es obligatoria") y @JsonFormat(pattern = "dd-MM-yyyy").
- * Añade Javadoc en español al record con un @param por componente. — generado por IA
- */
 /**
  * Representa una solicitud para crear un préstamo en la biblioteca.
  * @param bookId El ID del libro que se va a prestar.

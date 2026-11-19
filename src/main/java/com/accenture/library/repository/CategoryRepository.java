@@ -6,12 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.accenture.library.model.Category;
 
-/*
- * Crea la interfaz CategoryRepository que extiende JpaRepository<Category, Long>.
- * Métodos: List<Category> findAllByOrderByIdAsc() para listar ordenado por id ascendente
- * boolean existsByName(String name) para comprobar si ya existe una categoría con ese nombre.
- * Añade Javadoc en español a la interfaz y a cada método. — generado por IA
- */
 /** 
  * Interfaz de repositorio para la entidad Category.
  * Extiende JpaRepository para proporcionar operaciones CRUD básicas.

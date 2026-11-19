@@ -5,10 +5,8 @@ import java.util.List;
 import com.accenture.library.dto.request.LoanRequestDTO;
 import com.accenture.library.dto.response.LoanResponseDTO;
 
-/*
- * Crea la interfaz LoanService con los métodos: List<LoanResponseDTO> findAll(); LoanResponseDTO findById(Long id)
- * LoanResponseDTO create(LoanRequestDTO dto); LoanResponseDTO returnLoan(Long id).
- * Añade Javadoc en español a la interfaz y a cada método. — generado por IA
+/**
+ * Interfaz que define los métodos para gestionar los préstamos en la biblioteca.
  */
 public interface LoanService {
 

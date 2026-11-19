@@ -6,12 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.accenture.library.model.Loan;
 
-/*
- * Crea la interfaz LoanRepository que extiende JpaRepository<Loan, Long>.
- * Métodos: List<Loan> findAllByOrderByIdAsc() para listar ordenado por id ascendente
- * boolean existsByBookId(Long bookId) para comprobar si un libro tiene algún préstamo, sea cual sea su estado.
- * Añade Javadoc en español a la interfaz y a cada método. — generado por IA
- */
 /**
  * Interfaz de repositorio para la entidad Loan.
  * Extiende JpaRepository para proporcionar operaciones CRUD básicas.

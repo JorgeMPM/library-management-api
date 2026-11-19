@@ -14,13 +14,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/*
- * Crea el @Component JwtAuthenticationFilter que extiende OncePerRequestFilter, con un campo final JwtService inyectado por constructor.
- * doFilterInternal: lee la cabecera Authorization; si empieza por "Bearer " y jwtService.isTokenValid(token), crea un
- * UsernamePasswordAuthenticationToken con el usuario, credenciales null y una SimpleGrantedAuthority con el rol del token,
- * y lo guarda en SecurityContextHolder. Siempre continúa con filterChain.doFilter.
- * Javadoc en español en la clase, el constructor y el método. — generado por IA
- */
 /**
  * Filtro que lee el token JWT de la cabecera Authorization y, si es válido, autentica la petición.
  */

@@ -25,13 +25,6 @@ import com.accenture.library.model.LoanStatus;
 import com.accenture.library.repository.BookRepository;
 import com.accenture.library.repository.LoanRepository;
 
-/*
- * Crea la clase de test LoanServiceImplTest con @ExtendWith(MockitoExtension.class), @Mock LoanRepository y BookRepository,
- * @Spy LoanMapper loanMapper = new LoanMapper() y @InjectMocks LoanServiceImpl.
- * 5 tests con Given/When/Then comentados y nombre metodo_shouldX_whenY: crear préstamo decrementa el stock; crear préstamo sin stock
- * lanza BookOutOfStockException; devolver préstamo incrementa el stock; devolver préstamo pone el estado RETURNED
- * devolver préstamo ya devuelto lanza LoanAlreadyReturnedException. — generado por IA
- */
 /**
  * Tests unitarios de LoanServiceImpl sin contexto de Spring.
  */

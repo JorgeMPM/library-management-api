@@ -10,13 +10,6 @@ import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 import com.accenture.library.constants.ValidationMessages;
 
-/*
- * Crea la anotación de validación de clase ValidBookStock con @Target(ElementType.TYPE), @Retention(RetentionPolicy.RUNTIME),
- * @Documented y @Constraint(validatedBy = BookStockValidator.class).
- * Métodos: String message() default "El stock disponible no puede ser mayor que el stock total";
- * Class<?>[] groups() default {}; Class<? extends Payload>[] payload() default {}.
- * Añade Javadoc en español a la anotación y a cada método. — generado por IA
- */
 /** 
  * Anotación de validación para asegurar que el stock disponible de un libro no sea mayor que el stock total.
  */ 

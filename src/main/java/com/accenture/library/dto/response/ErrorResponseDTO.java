@@ -4,11 +4,6 @@ import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-/*
- * Crea el record ErrorResponseDTO con los componentes: timestamp LocalDateTime con @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss"),
- * status int, error String, message String y path String.
- * Añade Javadoc en español al record con un @param por componente. — generado por IA
- */
 /**
  * Representa la respuesta de error que se devuelve al cliente en caso de una excepción.
  * 

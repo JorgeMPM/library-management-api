@@ -12,14 +12,6 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
-/*
- * Crea el @Service JwtService que recibe por constructor @Value("${jwt.secret}") String secret y
- * @Value("${jwt.expiration-ms}") long expirationMs, y crea una SecretKey con Keys.hmacShaKeyFor(secret en UTF-8).
- * generateToken(String username, String role): token JJWT con subject, claim "role", issuedAt, expiration y signWith(key).
- * extractUsername(String token) y extractRole(String token) leyendo los claims con Jwts.parser().verifyWith(key).
- * isTokenValid(String token): true si se puede parsear, false si lanza JwtException o IllegalArgumentException.
- * Javadoc en español en la clase, el constructor y cada método. — generado por IA
- */
 /**
  * Clase de servicio para la gestión de tokens JWT.
  * Proporciona métodos para generar, extraer información y validar tokens JWT.

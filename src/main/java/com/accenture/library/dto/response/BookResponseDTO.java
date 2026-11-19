@@ -2,11 +2,6 @@ package com.accenture.library.dto.response;
 
 import java.util.List;
 
-/*
- * Crea el record BookResponseDTO con los componentes: id Long, title String, isbn String, publishedYear Integer,
- * availableStock Integer, totalStock Integer, categoryId Long, categoryName String y authors List<AuthorResponseDTO>.
- * Añade Javadoc en español al record con un @param por componente. — generado por IA
- */
 /**
  * Representa la respuesta de un libro en la biblioteca.
  * @param id El ID del libro.

@@ -10,13 +10,9 @@ import com.accenture.library.model.Book;
 import com.accenture.library.model.Loan;
 import com.accenture.library.model.LoanStatus;
 
-/*
- * Crea la clase LoanMapper anotada con @Component.
- * Método toEntity(LoanRequestDTO dto, Book book): crea un Loan nuevo con loanDate y expectedReturnDate del dto y el book recibido.
- * Método toResponseDTO(Loan loan): calcula el status: si es ACTIVE y expectedReturnDate es anterior a LocalDate.now(),
- * usa OVERDUE; si no, el status guardado. Devuelve un LoanResponseDTO con id, book.getId(), book.getTitle(), loanDate,
- * expectedReturnDate, actualReturnDate y el status calculado.
- * Sin lambdas. Añade Javadoc en español a la clase y a cada método. — generado por IA
+/**
+ * Mapper para convertir entre entidades Loan y DTOs de préstamo.
+ * Calcula el estado OVERDUE si la fecha de devolución esperada ha pasado y el préstamo sigue activo.
  */
 @Component
 public class LoanMapper {

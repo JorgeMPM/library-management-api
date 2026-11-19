@@ -27,18 +27,6 @@ import com.accenture.library.dto.response.ErrorResponseDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import com.accenture.library.constants.ErrorMessages;
 
-/*
- * Crea la clase GlobalExceptionHandler con @RestControllerAdvice. Un método privado build(HttpStatus, String message,
- * HttpServletRequest) que devuelve ResponseEntity<ErrorResponseDTO> con contentType APPLICATION_JSON, timestamp LocalDateTime.now(),
- * status.value(), status.getReasonPhrase(), el mensaje y request.getRequestURI().
- * Un @ExceptionHandler por excepción: MethodArgumentNotValidException 400 (une con "; " los mensajes de field errors y global errors
- * con bucles for); HttpMessageNotReadableException, MethodArgumentTypeMismatchException, MissingServletRequestParameterException,
- * ReferencedResourceNotFoundException e InvalidQueryParameterException 400; ResourceNotFoundException y NoResourceFoundException 404
- * HttpRequestMethodNotSupportedException 405; HttpMediaTypeNotAcceptableException 406; HttpMediaTypeNotSupportedException 415
- * DuplicateResourceException, ResourceInUseException, BookOutOfStockException, LoanAlreadyReturnedException y
- * DataIntegrityViolationException 409; Exception 500. Mensajes en español. Sin lambdas ni streams.
- * Javadoc en español en la clase y en cada método. — generado por IA
- */
 /**
  * Manejo centralizado de errores: convierte cada excepción en una respuesta con la estructura común de error.
  */

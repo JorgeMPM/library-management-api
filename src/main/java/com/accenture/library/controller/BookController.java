@@ -30,17 +30,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
-/*
- * Crea el @RestController BookController con @RequestMapping("/api/v1/books") y @Tag(name = "Libros"),
- * con un campo final BookService inyectado por constructor.
- * GET: recibe @RequestParam(required = false) Integer page, Integer size, Long categoryId, Long authorId, Boolean available
- * y HttpServletRequest request; lee sort con request.getParameterValues("sort") y llama a bookService.findAll; 200.
- * GET /{id}: 200. POST con @Valid @RequestBody BookRequestDTO: 201. PUT /{id} con @Valid @RequestBody: 200. DELETE /{id}: 204.
- * Cada método con @Operation(summary) y @ApiResponses en español: GET 200, 400 y 401; GET /{id} 200, 404 y 401
- * POST 201, 400, 409 y 401; PUT 200, 400, 404, 409 y 401; DELETE 204, 404, 409, 401 y 403;
- * en 400, 401, 403, 404 y 409 content con schema ErrorResponseDTO. En el GET documenta sort con @Parameter de tipo query.
- * Sin try/catch ni lambdas. Javadoc en español en la clase, el constructor y cada método. — generado por IA
- */
 /**
  * Controlador REST para gestionar los libros en la biblioteca.
  */

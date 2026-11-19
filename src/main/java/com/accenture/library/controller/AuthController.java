@@ -25,14 +25,6 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
-/*
- * Crea el @RestController AuthController con @RequestMapping("/auth") y @Tag(name = "Autenticación"), con campos final
- * AuthenticationManager y JwtService inyectados por constructor.
- * POST /login con @Valid @RequestBody LoginRequestDTO: autentica con UsernamePasswordAuthenticationToken; de las authorities
- * del resultado toma la que empieza por "ROLE_"; genera el token con jwtService y devuelve 200 con LoginResponseDTO.
- * @SecurityRequirements vacío y @ApiResponses 200, 400 y 401 (400 y 401 con schema ErrorResponseDTO).
- * Javadoc en español en la clase, el constructor y el método. — generado por IA
- */
 /**
  * Endpoint público de autenticación: devuelve un token JWT si las credenciales son correctas.
  */

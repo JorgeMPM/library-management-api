@@ -5,11 +5,6 @@ import java.util.List;
 import com.accenture.library.dto.request.AuthorRequestDTO;
 import com.accenture.library.dto.response.AuthorResponseDTO;
 
-/*
- * Crea la interfaz AuthorService con los métodos: List<AuthorResponseDTO> findAll(); AuthorResponseDTO findById(Long id)
- * AuthorResponseDTO create(AuthorRequestDTO dto); AuthorResponseDTO update(Long id, AuthorRequestDTO dto); void delete(Long id).
- * Añade Javadoc en español a la interfaz y a cada método. — generado por IA
- */
 /**
  * Interfaz de servicio para gestionar autores en la biblioteca.
  */
