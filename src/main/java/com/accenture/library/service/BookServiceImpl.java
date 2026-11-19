@@ -47,8 +47,6 @@ public class BookServiceImpl implements BookService {
     private final LoanRepository loanRepository;
     private final BookMapper bookMapper;
 
-    // Añade la constante SORTABLE_FIELDS = List.of("title", "isbn",
-    // "publishedYear", "availableStock", "totalStock").
     // Campos con los que se permite ordenar el listado de libros.
     private static final List<String> SORTABLE_FIELDS = List.of("title", "isbn", "publishedYear", "availableStock",
             "totalStock");
