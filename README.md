@@ -249,13 +249,17 @@ Se han implementado los **tres filtros**, que se combinan entre sí y con la pag
 
 ## Docker (requisito opcional)
 
-La imagen se construye con un `Dockerfile` multi-stage (Maven con Java 21 para compilar y `eclipse-temurin:21-jre-alpine` para ejecutar). Dentro del contenedor se activa el perfil `docker` (`application-docker.properties`), que sustituye MySQL por una base de datos **H2 en memoria** con `ddl-auto=create-drop`. El script `db/init.sql` no se usa en este perfil, así que la base de datos arranca vacía. Fuera del contenedor, la aplicación sigue funcionando con MySQL.
+La imagen se construye con un `Dockerfile` multi-stage (Maven con Java 21 para compilar y `eclipse-temurin:21-jre-alpine` para ejecutar). Por defecto la imagen arranca **sin perfil**, con la configuración base: se conecta a MySQL mediante las variables `DB_URL`, `DB_USERNAME` y `DB_PASSWORD`, y Hibernate solo valida el esquema (`ddl-auto=validate`). Es el modo que se usa al desplegar.
+
+Para probarla en local sin MySQL, se activa el perfil `docker` (`application-docker.properties`), que usa una base de datos **H2 en memoria** con `ddl-auto=create-drop`: arranca vacía y los datos se pierden al parar el contenedor.
+
+El endpoint `GET /actuator/health` es público (sin token) y se usa como health check del balanceador.
 
 Desde la raíz del proyecto:
 
 ```bash
 docker build -t library:1.0 .
-docker run -p 8080:8080 library:1.0
+docker run -e SPRING_PROFILES_ACTIVE=docker -p 8080:8080 library:1.0
 ```
 
 Para comprobarlo en Swagger UI (`http://localhost:8080/swagger-ui.html`): hacer login con `POST /auth/login`, autorizar con el token, crear una categoría con `POST /api/v1/categories` y listarla con `GET /api/v1/categories`.
